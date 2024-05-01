@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project_1.mapper.MainTestMapper">
+    <select id="mainTest" resultType="string">
+        SELECT '해당값이 없습니다.' AS DNAME
+        FROM DUAL
+        WHERE 1 = 1
+          AND NOT EXISTS(SELECT DNAME
+                         FROM DEPARTMENT
+                         WHERE DNO = #{dno}
+            )
+        UNION ALL
+        SELECT IFNULL(DNAME, '해당값이 없습니다.') AS DNAME
+        FROM DEPARTMENT
+        WHERE DNO = #{dno}
+    </select>
+</mapper>
