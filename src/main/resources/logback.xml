@@ -6,13 +6,14 @@
     <!-- console 색상 -->
     <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
 
-    <!-- 변수 저장하는 곳 -->
+    <!-- 변수 저장하는 곳, 타임존 추가 -->
     <property name="LOG_PATTERN"
-              value="[%d{yyyy-MM-dd HH:mm:ss}] [%thread] %clr(%5level) %cyan(%logger) - %msg%n"/>
+              value="[%d{yyyy-MM-dd HH:mm:ss, ${logback.timezone:-Asia/Seoul}}] [%thread] %clr(%5level) %cyan(%logger) - %msg%n"/>
     <property name="FILE_LOG_PATTERN"
-              value="[%d{yyyy-MM-dd HH:mm:ss}] [%thread] %5level %logger - %msg%n"/>
+              value="[%d{yyyy-MM-dd HH:mm:ss, ${logback.timezone:-Asia/Seoul}}] [%thread] %5level %logger - %msg%n"/>
 
-    <property name="LOG_DIRECTORY" value="/log/"/>
+    <!--파일경로 지정 및 파일 형식-->
+    <property name="LOG_DIRECTORY" value="/home/ubuntu"/>
     <property name="LOG_FILE" value="log-file-${profile}"/>
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
