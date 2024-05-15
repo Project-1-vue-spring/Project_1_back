@@ -1,6 +1,7 @@
 package com.project_1.service;
 
 import com.project_1.dto.MainTestDto;
+import com.project_1.dvo.MainTestDvo;
 import com.project_1.mapper.MainTestMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,12 @@ public class MainTestService {
         LOG.info("log_서비스호출.");
         LOG.info("log_파라메터 dname : " + dto.dname());
         LOG.info("log_파라메터 dno : " + dto.dno());
+
+        MainTestDvo dvo = new MainTestDvo();
+        dvo.setDname(dto.dname());
+        dvo.setDno(dto.dno());
+
+        LOG.info(dvo.getDno());
 
         String result = mapper.mainTest(dto);
 

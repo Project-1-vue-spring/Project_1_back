@@ -32,22 +32,22 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.session:spring-session-core'
-    // Swagger ============================================================
+    // Swagger =================================================================
     // 스프링부터 3.x 버전 부터는 스웨거 2.9.2 같은 하위 버전 호환안됨. webmvc-ui:2.0.2 로 의존성 주입해야함.
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
     // implementation 'io.springfox:springfox-swagger2:2.9.2'
     // implementation 'io.springfox:springfox-swagger-ui:2.9.2'
-    // Transactional ======================================================
+    // Transactional ===========================================================
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     runtimeOnly 'com.h2database:h2'
     // mybatis & DB ============================================================
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
     runtimeOnly 'com.mysql:mysql-connector-j' // DB MySQL 커넥션
     implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16' //sql 로그
-    // ====================================================================
+    // =========================================================================
     compileOnly 'org.projectlombok:lombok'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
 }
