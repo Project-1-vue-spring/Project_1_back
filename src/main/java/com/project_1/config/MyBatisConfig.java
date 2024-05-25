@@ -22,6 +22,10 @@ public class MyBatisConfig {
     @Value("${spring.datasource.mapper-locations}")
     String mPath;
 
+    // mybatis 설정 파일을 따로 작성해서 임포트할 예정 - snake_case -> camelCase 를 위함
+    @Value("${mybatis.config-location}")
+    String mybatisConfigPath;
+
     @Bean(name = "dataSource")
     @ConfigurationProperties(prefix = "spring.datasource")
     public DataSource DataSource() {
@@ -33,6 +37,7 @@ public class MyBatisConfig {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(DataSource);
         sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources(mPath));
+        sqlSessionFactoryBean.setConfigLocation(applicationContext.getResource(mybatisConfigPath));
         return sqlSessionFactoryBean.getObject();
     }
 
