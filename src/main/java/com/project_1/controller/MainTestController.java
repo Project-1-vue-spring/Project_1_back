@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import static com.project_1.config.MainConst.LOG;
 
-@Tag(name = "Project_1", description = "Project_1의 API")
+@Tag(name = "Project_1_테스트", description = "Project_1의 테스트 API")
 @RestController
 @RequiredArgsConstructor // final이 붙거나 @NotNull 이 붙은 필드의 생성자를 자동 생성해주는 롬복 어노테이션
 @RequestMapping("/api")
