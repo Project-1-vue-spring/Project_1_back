@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project_1.jwt.JwtAuthenticationFilter;
 import com.project_1.jwt.JwtTokenProvider;
 import com.project_1.jwt.UserDetailService;
-import com.project_1.oauth2.CustomOAuth2UserService;
 import com.project_1.oauth2.Role;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -18,11 +17,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
@@ -75,8 +70,10 @@ public class SecurityConfig {
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorizeRequests) -> authorizeRequests
                         .requestMatchers("/oauth2/**").permitAll()
-                        .requestMatchers("/swagger-ui/**").hasRole(Role.ADMIN.name()) // 스웨거 주소는 관리자권한
-                        .requestMatchers( "/v3/api-docs/**").hasRole(Role.ADMIN.name()) // 스웨거 주소는 관리자권한
+                        .requestMatchers("/swagger-ui/**").permitAll()// 스웨거 주소는 관리자권한 .permitAll()
+                        .requestMatchers("/v3/api-docs/**").permitAll() // 스웨거 주소는 관리자권한 .permitAll()
+//                        .requestMatchers("/swagger-ui/**").hasRole(Role.ADMIN.name()) // 스웨거 주소는 관리자권한 .permitAll()
+//                        .requestMatchers("/v3/api-docs/**").hasRole(Role.ADMIN.name()) // 스웨거 주소는 관리자권한 .permitAll()
                         .requestMatchers("/api/**").permitAll()
                         .anyRequest().authenticated()
                 )
@@ -114,13 +111,13 @@ public class SecurityConfig {
                 writer.flush();
             };
 
-@Getter
-@RequiredArgsConstructor
-public class ErrorResponse {
+    @Getter
+    @RequiredArgsConstructor
+    public class ErrorResponse {
 
-    private final HttpStatus status;
-    private final String message;
-}
+        private final HttpStatus status;
+        private final String message;
+    }
 
 }
 
